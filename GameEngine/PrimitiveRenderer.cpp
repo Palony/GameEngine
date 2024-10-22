@@ -1,8 +1,8 @@
-﻿#include "PrimitiveRenderer.h"
+#include "PrimitiveRenderer.h"
 
 void PrimitiveRenderer::init(sf::RenderWindow& window)
 {
-    //trójk¹t
+    //trójkąt
     vertex.position = sf::Vector2f(10.f, 50.f);
     vertex.color = sf::Color::Red;
     vertex.texCoords = sf::Vector2f(100.f, 100.f);
@@ -20,23 +20,23 @@ void PrimitiveRenderer::init(sf::RenderWindow& window)
     triangle[2].color = sf::Color::Green;
     window.draw(triangle);
 
-    //okr¹g
+    //okrąg
     sf::CircleShape shape(50);
     shape.setPosition(500.f, 100.f);
     shape.setFillColor(sf::Color(250, 0, 50));
     window.draw(shape);
-    //prostok¹t
+    //prostokąt
     sf::RectangleShape rectangle(sf::Vector2f(120, 50));
     rectangle.setSize(sf::Vector2f(100, 200));
     rectangle.setPosition(300.f, 100.f);
     rectangle.setFillColor(sf::Color(250, 0, 50));
     window.draw(rectangle);
-    //wielok¹t
+    //wielokąt
     sf::CircleShape octagon(50, 8);
     octagon.setPosition(600.f, 350.f);
     octagon.setFillColor(sf::Color(0, 124, 22));
     window.draw(octagon);
-
+    
     //odcinek SFML
 
     sf::VertexArray lines(sf::Lines, 2);
@@ -48,27 +48,62 @@ void PrimitiveRenderer::init(sf::RenderWindow& window)
     window.draw(lines);
 
 
-
+   
 }
 // odcinek algorytmem przyrostowym
 void PrimitiveRenderer::drawIncrementalLine(sf::RenderWindow& window, float x0, float y0, float x1, float y1)
 {
-
+    
     float dx = x1 - x0;
     float dy = y1 - y0;
+
+    
+    if (dx == 0)  
+    {
+        if (y0 > y1) std::swap(y0, y1);  
+        for (float y = y0; y <= y1; ++y)
+        {
+            sf::Vertex pixel(sf::Vector2f(x0, y), sf::Color::White);  
+            window.draw(&pixel, 1, sf::Points);
+        }
+        return;  
+    }
+
+    
+    if (dy == 0) 
+    {
+        if (x0 > x1) std::swap(x0, x1);  
+        for (float x = x0; x <= x1; ++x)
+        {
+            sf::Vertex pixel(sf::Vector2f(x, y0), sf::Color::White);  
+            window.draw(&pixel, 1, sf::Points);
+        }
+        return;  
+    }
+
+   
     float m = dy / dx;
 
-    // punkt 0
+    
+    if (x0 > x1)
+    {
+        std::swap(x0, x1);
+        std::swap(y0, y1);
+        dx = x1 - x0;
+        dy = y1 - y0;
+        m = dy / dx;
+    }
+
+    
     float y = y0;
 
-
+    
     for (float x = x0; x <= x1; ++x)
     {
-
-        sf::Vertex pixel(sf::Vector2f(x, std::round(y)), sf::Color::White);
+        sf::Vertex pixel(sf::Vector2f(x, std::round(y)), sf::Color::White);  
         window.draw(&pixel, 1, sf::Points);
-
-
-        y += m;
+        y += m;  
     }
 }
+
+
