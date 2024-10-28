@@ -106,4 +106,66 @@ void PrimitiveRenderer::drawIncrementalLine(sf::RenderWindow& window, float x0, 
     }
 }
 
+void PrimitiveRenderer::drawCircle(sf::RenderWindow& window, float x0, float y0, float R)
+{
+    drawQuarter(window, x0, y0, R, 1, -1);   
+    drawQuarter(window, x0, y0, R, 1, 1);  
+    drawQuarter(window, x0, y0, R, -1, 1); 
+    drawQuarter(window, x0, y0, R, -1, -1);  
+}
+
+void PrimitiveRenderer::drawElipse(sf::RenderWindow& window, float x0, float y0, float R1, float R2)
+{
+    drawQuarterElipse(window, x0, y0, R1,R2, 1, -1);
+    drawQuarterElipse(window, x0, y0, R1,R2, 1, 1);
+    drawQuarterElipse(window, x0, y0, R1,R2, -1, 1);
+    drawQuarterElipse(window, x0, y0, R1,R2, -1, -1);
+}
+
+void PrimitiveRenderer::drawQuarter(sf::RenderWindow& window, float x0, float y0, float R, int x_sign, int y_sign)
+{
+    const float M_PI = 3.14159265359f; // PI
+    float alfa = 0.0f; // kat
+    const float inc = 1.0f / R; //stala którą inkrementujemy kąt
+
+    while (alfa <= M_PI / 2)
+    {
+        float x = x0 + x_sign * R * cos(alfa);  
+        float y = y0 + y_sign * R * sin(alfa);
+
+        sf::Vertex pixel(sf::Vector2f(std::round(x), std::round(y)), sf::Color::White);
+        window.draw(&pixel, 1, sf::Points);
+
+        alfa += inc;
+    }
+}
+
+void PrimitiveRenderer::drawQuarterElipse(sf::RenderWindow& window, float x0, float y0, float R1, float R2, int x_sign, int y_sign)
+{
+    const float M_PI = 3.14159265359f; // PI
+    float alfa = 0.0f; // kat 
+    float inc;
+
+    //Ustawienie inc dla większego promienia
+    if (R1 > R2) {
+        inc = 1.0f / R1;
+    }
+    else {
+        inc = 1.0f / R2;
+    }
+
+    while (alfa <= M_PI / 2)
+    {
+        float x = x0 + x_sign * R1 * cos(alfa);
+        float y = y0 + y_sign * R2 * sin(alfa);
+
+        sf::Vertex pixel(sf::Vector2f(std::round(x), std::round(y)), sf::Color::White);
+        window.draw(&pixel, 1, sf::Points);
+
+        alfa += inc;
+    }
+}
+
+
+
 
