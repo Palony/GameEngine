@@ -26,22 +26,37 @@ int main() {
         primitiverenderer.drawIncrementalLine(*engine.window, 700.f, 500.f, 750.f, 550.f);
 
         // Rysowanie drugiej linii
-        line.set_top(325.f, 360);
-        line.set_bottom(466.f, 367.f);
+        line.set_top(300.f, 300);
+        line.set_bottom(500, 500);
         line.draw_line(*engine.window);
 
         // Rysowanie prymitywów
         primitiverenderer.init(*engine.window);
 
         // Rysowanie punktu
-        point.setXY(500.f, 500.f);
+        point.setXY(350.f, 300.f);
         point.draw_point(*engine.window);
 
-        //Rysowanie okręgu za pomocą funkcji wykorzysującej 4 krotną symetrię 
+        // przesuniecia
+        point.translation(*engine.window, 200, 100);
+        line.translation(*engine.window, 200, 100);
 
-        primitiverenderer.drawCircle(*engine.window, 400.0f, 400.0f,15.f);
+        //rotacja
+        point.rotation00(*engine.window, 90);
+        point.rotationXY(*engine.window, 90, 300, 300);
+        line.rotation00(*engine.window, 90);
+        line.rotationXY(*engine.window, 90, 500, 500);
+
+        //skalowanie
+        point.scaling00(*engine.window, 0.5);
+        point.scalingXY(*engine.window, 0.5,600,300);
+        line.scaling00(*engine.window, 0.5);
+        line.scalingXY(*engine.window, 0.5, 600, 300);
+
+        //Rysowanie okręgu za pomocą funkcji wykorzysującej 4 krotną symetrię 
+        primitiverenderer.drawCircle(*engine.window, 400.0f, 400.0f, 15.f);
         //Rysowanie elipsy za pomocą funkcji wykorzysującej 4 krotną symetrię 
-        primitiverenderer.drawElipse(*engine.window, 400.0f, 300.0f, 100.f,100.f);
+        primitiverenderer.drawElipse(*engine.window, 400.0f, 300.0f, 100.f, 100.f);
 
         // Rysowanie
         engine.window->display();
