@@ -3,6 +3,7 @@
 #include <cmath>
 
 class LineSegment
+	:public Point2D
 {
 #define M_PI 3.14159265358979323846
 	Point2D top;

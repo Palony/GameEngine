@@ -1,55 +1,6 @@
 #include "PrimitiveRenderer.h"
+using namespace std;
 
-void PrimitiveRenderer::init(sf::RenderWindow& window)
-{
-    //trójkąt
-    vertex.position = sf::Vector2f(10.f, 50.f);
-    vertex.color = sf::Color::Red;
-    vertex.texCoords = sf::Vector2f(100.f, 100.f);
-
-
-    sf::VertexArray triangle(sf::Triangles, 3);
-
-
-    triangle[0].position = sf::Vector2f(10.f, 10.f);
-    triangle[1].position = sf::Vector2f(100.f, 10.f);
-    triangle[2].position = sf::Vector2f(200.f, 200.f);
-
-    triangle[0].color = sf::Color::Red;
-    triangle[1].color = sf::Color::Blue;
-    triangle[2].color = sf::Color::Green;
-    window.draw(triangle);
-
-    //okrąg
-    sf::CircleShape shape(50);
-    shape.setPosition(500.f, 100.f);
-    shape.setFillColor(sf::Color(250, 0, 50));
-    window.draw(shape);
-    //prostokąt
-    sf::RectangleShape rectangle(sf::Vector2f(120, 50));
-    rectangle.setSize(sf::Vector2f(100, 200));
-    rectangle.setPosition(300.f, 100.f);
-    rectangle.setFillColor(sf::Color(250, 0, 50));
-    window.draw(rectangle);
-    //wielokąt
-    sf::CircleShape octagon(50, 8);
-    octagon.setPosition(600.f, 350.f);
-    octagon.setFillColor(sf::Color(0, 124, 22));
-    window.draw(octagon);
-    
-    //odcinek SFML
-
-    sf::VertexArray lines(sf::Lines, 2);
-    lines[0].position = sf::Vector2f(650.f, 450.f);
-    lines[1].position = sf::Vector2f(700.f, 500.f);
-    lines[0].color = sf::Color::White;
-    lines[1].color = sf::Color::White;
-
-    window.draw(lines);
-
-
-   
-}
 // odcinek algorytmem przyrostowym
 void PrimitiveRenderer::drawIncrementalLine(sf::RenderWindow& window, float x0, float y0, float x1, float y1)
 {
@@ -165,6 +116,58 @@ void PrimitiveRenderer::drawQuarterElipse(sf::RenderWindow& window, float x0, fl
         alfa += inc;
     }
 }
+
+void PrimitiveRenderer::drawTriangle(sf::RenderWindow& window, float x0, float y0, float x1, float y1, float x2, float y2)
+{
+    drawIncrementalLine(window, x0, y0, x1, y1);
+    drawIncrementalLine(window, x1, y1, x2, y2);
+    drawIncrementalLine(window, x2, y2, x0, y0);
+
+}
+
+void PrimitiveRenderer::drawRectangle(sf::RenderWindow& window, float w0, float w1, float h0, float h1)
+{
+    drawIncrementalLine(window, w0, h0, w1, h0);
+    drawIncrementalLine(window, w1, h0, w1, h1);
+    drawIncrementalLine(window, w1, h1, w0, h1);
+    drawIncrementalLine(window, w0, h1, w0, h0);
+}
+
+void PrimitiveRenderer::drawPolygon(sf::RenderWindow& window, int angles) {
+    if (angles < 3) {
+       cerr << "Wielokat musi miec co najmniej 3 katy" <<endl;
+        return;
+    }
+
+
+    int* arrayX = new int[angles];
+    int* arrayY = new int[angles];
+   
+
+    arrayX[0] = 50;
+    arrayX[1] = 100;
+    arrayX[2] = 150;
+    arrayX[3] = 100;
+    arrayX[4] = 50;
+
+    arrayY[0] = 100;
+    arrayY[1] = 100;
+    arrayY[2] = 75;
+    arrayY[3] = 50;
+    arrayY[4] = 50;
+
+
+    for (int i = 0; i < angles - 1; ++i) {
+        drawIncrementalLine(window, arrayX[i], arrayY[i], arrayX[i + 1], arrayY[i + 1]);
+    }
+
+    drawIncrementalLine(window, arrayX[angles - 1], arrayY[angles - 1], arrayX[0], arrayY[0]);
+
+   
+    delete[] arrayX;
+    delete[] arrayY;
+}
+
 
 
 

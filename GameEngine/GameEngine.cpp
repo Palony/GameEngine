@@ -15,8 +15,12 @@ int main() {
     engine.initWindow();
     engine.time();
 
+   
+    bool firstIteration = true;
+
     while (engine.running())
     {
+     
         engine.update();
 
         // Czyszczenie
@@ -31,10 +35,16 @@ int main() {
         line.draw_line(*engine.window);
 
         // Rysowanie prymitywów
-        primitiverenderer.init(*engine.window);
+        primitiverenderer.drawTriangle(*engine.window,550, 100, 550,50,500,50);
+        primitiverenderer.drawRectangle(*engine.window, 600,700,100,50); //(wsp. szerokosci1, wsp. szerokosci2, wsp. wysokosci 1, wsp wysokosci2)
+        primitiverenderer.drawPolygon(*engine.window, 5);
+            
+        
+     
+        
 
         // Rysowanie punktu
-        point.setXY(350.f, 300.f);
+        point.setXY(400.f, 300.f);
         point.draw_point(*engine.window);
 
         // przesuniecia
