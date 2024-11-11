@@ -21,7 +21,7 @@ public:
 
 
 
-	//void init(sf::RenderWindow& window);
+	
 	void drawIncrementalLine(sf::RenderWindow& window, float x0, float y0, float x1, float y1);  
 	void drawCircle(sf::RenderWindow& window, float x0, float y0, float R);
 	void drawElipse(sf::RenderWindow& window, float x0, float y0, float R1, float R2);

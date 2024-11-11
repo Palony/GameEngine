@@ -2,6 +2,7 @@
 #include "PrimitiveRenderer.h"
 #include "Point2D.h"
 #include "LineSegment.h"
+#include "BitmapHandler.h"
 
 
 
@@ -10,14 +11,17 @@ int main() {
     PrimitiveRenderer primitiverenderer;
     Point2D point;
     LineSegment line;
+    BitmapHandler bitmap;
 
     engine.initializeVariables();
     engine.initWindow();
     engine.time();
+    if(!bitmap.loadFromFile("steve.png")) {
+        std::cerr << "Nie mozna wczytac pliku bitmapy!" << std::endl;
+        return -1;
+    }
 
-   
-    bool firstIteration = true;
-
+    
     while (engine.running())
     {
      
@@ -26,12 +30,9 @@ int main() {
         // Czyszczenie
         engine.window->clear();
 
-        // Rysowanie linii za pomocą algorytmu przyrostowego
-        primitiverenderer.drawIncrementalLine(*engine.window, 700.f, 500.f, 750.f, 550.f);
-
-        // Rysowanie drugiej linii
-        line.set_top(300.f, 300);
-        line.set_bottom(500, 500);
+        //Rysowanie  linii
+        line.set_top(250, 150);
+        line.set_bottom(250, 450);
         line.draw_line(*engine.window);
 
         // Rysowanie prymitywów
@@ -39,34 +40,36 @@ int main() {
         primitiverenderer.drawRectangle(*engine.window, 600,700,100,50); //(wsp. szerokosci1, wsp. szerokosci2, wsp. wysokosci 1, wsp wysokosci2)
         primitiverenderer.drawPolygon(*engine.window, 5);
             
-        
-     
-        
-
+       
         // Rysowanie punktu
-        point.setXY(400.f, 300.f);
+        point.setXY(425.f, 325.f);
         point.draw_point(*engine.window);
 
         // przesuniecia
-        point.translation(*engine.window, 200, 100);
-        line.translation(*engine.window, 200, 100);
+        point.translation(*engine.window, 0, -100);
+        line.translation(*engine.window, 300, 0);
 
         //rotacja
         point.rotation00(*engine.window, 90);
         point.rotationXY(*engine.window, 90, 300, 300);
-        line.rotation00(*engine.window, 90);
-        line.rotationXY(*engine.window, 90, 500, 500);
+        line.rotation00(*engine.window, 120);
+        line.rotationXY(*engine.window, 60, 450, 300);
 
         //skalowanie
-        point.scaling00(*engine.window, 0.5);
-        point.scalingXY(*engine.window, 0.5,600,300);
-        line.scaling00(*engine.window, 0.5);
-        line.scalingXY(*engine.window, 0.5, 600, 300);
+          point.scaling00(*engine.window, 0.5);
+          point.scalingXY(*engine.window, 0.5,200,300);
+          line.scaling00(*engine.window, 0.5);
+          line.scalingXY(*engine.window, 0.5, 100, 300);
+
+          //bitmapy
+          
+          bitmap.draw(*engine.window);
+
 
         //Rysowanie okręgu za pomocą funkcji wykorzysującej 4 krotną symetrię 
-        primitiverenderer.drawCircle(*engine.window, 400.0f, 400.0f, 15.f);
+        primitiverenderer.drawCircle(*engine.window, 400.0f, 300.0f, 50.f);
         //Rysowanie elipsy za pomocą funkcji wykorzysującej 4 krotną symetrię 
-        primitiverenderer.drawElipse(*engine.window, 400.0f, 300.0f, 100.f, 100.f);
+        primitiverenderer.drawElipse(*engine.window, 400.0f, 300.0f, 100.f, 150.f);
 
         // Rysowanie
         engine.window->display();

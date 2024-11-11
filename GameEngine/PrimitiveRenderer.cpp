@@ -1,7 +1,7 @@
 #include "PrimitiveRenderer.h"
 using namespace std;
 
-// odcinek algorytmem przyrostowym
+
 void PrimitiveRenderer::drawIncrementalLine(sf::RenderWindow& window, float x0, float y0, float x1, float y1)
 {
     
