@@ -5,6 +5,12 @@
 #include <SFML/Network.hpp>
 #include <time.h>
 #include <iostream>
+#include "PrimitiveRenderer.h"
+#include "Point2D.h"
+#include "LineSegment.h"
+#include "BitmapHandler.h"
+#include "Player.h"
+
 
 
 

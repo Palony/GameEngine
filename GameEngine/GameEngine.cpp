@@ -1,10 +1,7 @@
 ﻿#include "Engine.h"
-#include "PrimitiveRenderer.h"
-#include "Point2D.h"
-#include "LineSegment.h"
-#include "BitmapHandler.h"
 
 
+/*
 
 int main() {
     Engine engine;
@@ -12,6 +9,11 @@ int main() {
     Point2D point;
     LineSegment line;
     BitmapHandler bitmap;
+    Player player;
+
+
+    
+   
 
     engine.initializeVariables();
     engine.initWindow();
@@ -24,6 +26,8 @@ int main() {
     
     while (engine.running())
     {
+        player.handleInput(*engine.window); // Obsługa wejścia dla gracza
+        player.update(); // Aktualizacja logiki gracza
      
         engine.update();
 
@@ -65,6 +69,9 @@ int main() {
           
           bitmap.draw(*engine.window);
 
+          //player
+          player.draw(*engine.window);
+
 
         //Rysowanie okręgu za pomocą funkcji wykorzysującej 4 krotną symetrię 
         primitiverenderer.drawCircle(*engine.window, 400.0f, 300.0f, 50.f);
@@ -77,3 +84,5 @@ int main() {
 
     return 0;
 }
+
+*/
