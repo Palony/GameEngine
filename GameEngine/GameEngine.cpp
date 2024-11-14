@@ -1,15 +1,23 @@
-﻿//#include "Engine.h"
+﻿#include "Engine.h"
+
 
 
 /*
-
 int main() {
     Engine engine;
     PrimitiveRenderer primitiverenderer;
     Point2D point;
     LineSegment line;
     BitmapHandler bitmap;
+
     Player player;
+;
+
+  //Tworzenie prymitywów
+    Triangle triangle(550, 100, 550, 50, 500, 50);
+    Elipse elipse(300.0f, 300.0f, 15.0f, 30.0f);
+    Circle circle(400.0f, 450.0f, 15.0f);
+    Rectangle rectangle(600.0f, 700.0f, 100.0f, 50.0f);
 
 
     
@@ -40,8 +48,16 @@ int main() {
         line.draw_line(*engine.window);
 
         // Rysowanie prymitywów
-        primitiverenderer.drawTriangle(*engine.window,550, 100, 550,50,500,50);
-        primitiverenderer.drawRectangle(*engine.window, 600,700,100,50); //(wsp. szerokosci1, wsp. szerokosci2, wsp. wysokosci 1, wsp wysokosci2)
+        //primitiverenderer.drawTriangle(*engine.window,550, 100, 550,50,500,50);
+        //primitiverenderer.drawRectangle(*engine.window, 600,700,100,50); //(wsp. szerokosci1, wsp. szerokosci2, wsp. wysokosci 1, wsp wysokosci2)
+        //primitiverenderer.drawPolygon(*engine.window, 5);
+
+        // Rysowanie prymitywów
+        circle.draw(*engine.window);
+        elipse.draw(*engine.window);
+        triangle.draw(*engine.window);
+        rectangle.draw(*engine.window);
+
         primitiverenderer.drawPolygon(*engine.window, 5);
             
        
@@ -74,9 +90,9 @@ int main() {
 
 
         //Rysowanie okręgu za pomocą funkcji wykorzysującej 4 krotną symetrię 
-        primitiverenderer.drawCircle(*engine.window, 400.0f, 300.0f, 50.f);
+        //primitiverenderer.drawCircle(*engine.window, 400.0f, 300.0f, 50.f);
         //Rysowanie elipsy za pomocą funkcji wykorzysującej 4 krotną symetrię 
-        primitiverenderer.drawElipse(*engine.window, 400.0f, 300.0f, 100.f, 150.f);
+        //primitiverenderer.drawElipse(*engine.window, 400.0f, 300.0f, 100.f, 150.f);
 
         // Rysowanie
         engine.window->display();
@@ -84,5 +100,6 @@ int main() {
 
     return 0;
 }
-
 */
+
+

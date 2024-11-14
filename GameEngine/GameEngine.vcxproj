@@ -133,14 +133,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\silnik cnie\AnimatedObject.cpp" />
-    <ClCompile Include="..\..\silnik cnie\Circle.cpp" />
-    <ClCompile Include="..\..\silnik cnie\Elipse.cpp" />
-    <ClCompile Include="..\..\silnik cnie\Rectangle.cpp" />
-    <ClCompile Include="..\..\silnik cnie\SpriteObject.cpp" />
-    <ClCompile Include="..\..\silnik cnie\Triangle.cpp" />
+    <ClCompile Include="AnimatedObject.cpp" />
     <ClCompile Include="BitmapHandler.cpp" />
+    <ClCompile Include="BitmapObject.cpp" />
+    <ClCompile Include="Circle.cpp" />
     <ClCompile Include="DrawableObject.cpp" />
+    <ClCompile Include="Elipse.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameLine.cpp" />
@@ -149,20 +147,21 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Point2D.cpp" />
     <ClCompile Include="PrimitiveRenderer.cpp" />
+    <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="ShapeObject.cpp" />
+    <ClCompile Include="SpriteObject.cpp" />
     <ClCompile Include="TransformableObject.cpp" />
+    <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="UpdatableObject.cpp" />
     <ClCompile Include="UwagaZakret.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\silnik cnie\AnimatedObject.h" />
-    <ClInclude Include="..\..\silnik cnie\Circle.h" />
-    <ClInclude Include="..\..\silnik cnie\Elipse.h" />
-    <ClInclude Include="..\..\silnik cnie\Rectangle.h" />
-    <ClInclude Include="..\..\silnik cnie\SpriteObject.h" />
-    <ClInclude Include="..\..\silnik cnie\Triangle.h" />
+    <ClInclude Include="AnimatedObject.h" />
     <ClInclude Include="BitmapHandler.h" />
+    <ClInclude Include="BitmapObject.h" />
+    <ClInclude Include="Circle.h" />
     <ClInclude Include="DrawableObject.h" />
+    <ClInclude Include="Elipse.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="GameLine.h" />
     <ClInclude Include="GameObject.h" />
@@ -170,8 +169,11 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Point2D.h" />
     <ClInclude Include="PrimitiveRenderer.h" />
+    <ClInclude Include="Rectangle.h" />
     <ClInclude Include="ShapeObject.h" />
+    <ClInclude Include="SpriteObject.h" />
     <ClInclude Include="TransformableObject.h" />
+    <ClInclude Include="Triangle.h" />
     <ClInclude Include="UpdatableObject.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,10 +1,10 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "GameObject.h"
+#include "DrawableObject.h"
 #include <SFML/Graphics.hpp>
 
-class Player : public GameObject {
+class Player : public DrawableObject {
 public:
     Player() {
         setXY(400.f, 300.f);

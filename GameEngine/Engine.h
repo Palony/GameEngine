@@ -8,8 +8,12 @@
 #include "PrimitiveRenderer.h"
 #include "Point2D.h"
 #include "LineSegment.h"
-#include "BitmapHandler.h"
+#include "Circle.h"
+#include "Elipse.h"
+#include "Triangle.h"
+#include "Rectangle.h"
 #include "Player.h"
+#include "BitmapHandler.h"
 
 
 

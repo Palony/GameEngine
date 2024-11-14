@@ -1,5 +1,7 @@
 #pragma once
-class DrawableObject
+#include "GameObject.h"
+
+class DrawableObject:public GameObject
 {
 };
 

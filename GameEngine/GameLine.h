@@ -8,7 +8,7 @@
 
 #define M_PI 3.14159265358979323846
 
-class GameLine :public TransformableObject, DrawableObject, Player
+class GameLine :public TransformableObject,Player
 {
 	Point2D point;
 	vector<Point2D> curve;
