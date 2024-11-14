@@ -22,7 +22,6 @@ public:
 		
 	}
 	float getAngle();
-	void setAngle(float angle);
 	void curveAlgorithm();
 	void handleInput(const sf::RenderWindow& window) override;
 

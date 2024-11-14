@@ -5,10 +5,6 @@ float GameLine::getAngle()
 	return this->angle;
 }
 
-void GameLine::setAngle(float angle)
-{
-	this->angle = angle;
-}
 
 void GameLine::curveAlgorithm()
 {
@@ -18,7 +14,7 @@ void GameLine::curveAlgorithm()
 	x = getX();
 	y = getY();
 
-	x = speed*
+	//x = speed*
 
 }
 
