@@ -11,9 +11,15 @@ void Player::handleInput(const sf::RenderWindow& window) {
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
         setX(getX() - speed);
+        sf::Vector2f position = sprite.getPosition();
+        position.x -= speed;
+        sprite.setPosition(position);
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
         setX(getX() + speed);
+        sf::Vector2f position = sprite.getPosition();
+        position.x += speed;
+        sprite.setPosition(position);
     }
 
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
@@ -28,8 +34,5 @@ void Player::update() {
 }
 
 void Player::draw(sf::RenderWindow& window) {
-    sf::CircleShape shape(10); // Przyk³adowy kszta³t reprezentuj¹cy gracza
-    shape.setPosition(getX(), getY());
-    shape.setFillColor(sf::Color::Green);
-    window.draw(shape);
+    BitmapHandler::draw(window);
 }

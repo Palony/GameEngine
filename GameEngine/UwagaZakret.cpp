@@ -4,6 +4,10 @@
 PrimitiveRenderer primitiverenderer;
 
 
+
+
+
+
 int main() {
     Engine engine;
 
@@ -22,7 +26,13 @@ int main() {
     Rectangle rectangle(600,0, 650.0f, -50.0f);
     Rectangle rectangle2(750.0f, 0, 720, -100.0f);
 
-    BitmapHandler bitmap;
+    Player bitmap;
+    bitmap.setXY(400.f, 500.0f);
+    bitmap.setPosition(400.f, 500.0f);
+
+    //std::vector<sf::Vector2f> points = circle.getPoints();
+
+
 
     // Inicjalizacja silnika
     engine.initializeVariables();
@@ -67,8 +77,13 @@ int main() {
         circle6.fall(*engine.window, 1.0f);
         circle6.draw(*engine.window);
 
-        //bitmap.fall(5);
+
+
+
+
+        bitmap.handleInput(*engine.window);
         bitmap.draw(*engine.window);
+
         
        
         

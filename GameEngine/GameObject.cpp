@@ -2,18 +2,18 @@
 
 void GameObject::setXY(float x, float y)
 {
-	cords.x = x;
-	cords.y = y;
+	this->cords.x = x;
+	this->cords.y = y;
 }
 
 void GameObject::setX(float x)
 {
-	cords.x = x;
+	this->cords.x = x;
 }
 
 void GameObject::setY(float y)
 {
-	cords.y = y;
+	this->cords.y = y;
 }
 
 sf::Vector2f GameObject::getXY()

@@ -14,7 +14,6 @@ bool BitmapHandler::loadFromFile(const std::string& filename) {
     if (image.loadFromFile(filename)) {
         texture.loadFromImage(image);
         sprite.setTexture(texture);
-        sprite.setPosition(50, 0); // Ustawienie domyœlnej pozycji na (0, 0)
         return true;
     }
     return false;
@@ -75,13 +74,6 @@ void BitmapHandler::setPosition(float x, float y) {
 }
 void BitmapHandler::fall(float speed) {
     
-    sf::Vector2f position = sprite.getPosition();
-    position.y += speed;
-    sprite.setPosition(position);
-}
-
-void BitmapHandler::Bitmapmoveleft(float speed)
-{
     sf::Vector2f position = sprite.getPosition();
     position.y += speed;
     sprite.setPosition(position);

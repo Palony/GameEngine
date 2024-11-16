@@ -44,21 +44,15 @@ void Engine::polEvents()
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
 		{
-			std::cout << "A: " << std::endl;
-			bitmap.Bitmapmoveleft(5.0f);
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
 		{
-			//std::cout << "W: " << std::endl;
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
 		{
-			//std::cout << "S: " << std::endl;
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
 		{
-			std::cout << "D: " << std::endl;
-			//std::cout << "Time: " << time1.asSeconds() << std::endl;
 		}
 	}
 }

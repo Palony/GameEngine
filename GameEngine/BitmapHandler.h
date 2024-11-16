@@ -1,3 +1,4 @@
+#pragma once
 #include <SFML/Graphics.hpp>
 #include <string>
 #include "BitmapObject.h"
@@ -25,7 +26,6 @@ public:
     void draw(sf::RenderWindow& window) override;
     void setPosition(float x, float y);
     void fall(float speed);
-    void Bitmapmoveleft(float speed);
 };
 
 

@@ -20,6 +20,11 @@ void Circle::drawQuarter(int x_sign, int y_sign, sf::RenderWindow& window)
     {
         float x1 = getX() + x_sign * R * cos(alfa);
         float y1 = getY() + y_sign * R * sin(alfa);
+        sf::Vector2f pos;
+        pos.x = x1;
+        pos.y = y1;
+        addPoints(pos);
+
 
         sf::Vertex pixel(sf::Vector2f(std::round(x1), std::round(y1)), sf::Color::White);
         window.draw(&pixel, 1, sf::Points);
@@ -52,4 +57,15 @@ void Circle::resetPosition()
 {
     
     setXY(initialX, -R); 
+}
+
+void Circle::addPoints(sf::Vector2f pos)
+{
+    this->points.push_back(pos);
+   
+}
+
+std::vector<sf::Vector2f> Circle::getPoints()
+{
+    return std::vector<sf::Vector2f>();
 }
