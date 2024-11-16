@@ -25,14 +25,11 @@ void LineSegment::draw_line(sf::RenderWindow& window)
     primitiveRenderer.drawIncrementalLine(window, top.getX(), top.getY(), bottom.getX(), bottom.getY());
 }
 
-void LineSegment::translation(sf::RenderWindow& window, float tx, float ty)
+void LineSegment::translation(float tx, float ty)
 {
-    float x2 = top.getX() + tx;
-    float y2 = top.getY() + ty;
-    float x1 = bottom.getX() + tx;
-    float y1 = bottom.getY() + ty;
-
-    primitiveRenderer.drawIncrementalLine(window, x1, y1, x2, y2);
+    top.setXY(top.getX() + tx, top.getY() + ty);
+    bottom.setXY(bottom.getX() + tx, bottom.getY() + ty);
+   
 }
 
 void LineSegment::rotation00(sf::RenderWindow& window, float alfa)
@@ -50,18 +47,20 @@ void LineSegment::rotation00(sf::RenderWindow& window, float alfa)
 
 }
 
-void LineSegment::rotationXY(sf::RenderWindow& window, float alfa, float x0, float y0)
+void LineSegment::rotationXY(float alfa, float x0, float y0)
 {
-    alfa = alfa * M_PI / 180;
-
+    alfa = alfa * M_PI / 180.0f;
 
     float x2 = x0 + (top.getX() - x0) * cos(alfa) - (top.getY() - y0) * sin(alfa);
     float y2 = y0 + (top.getX() - x0) * sin(alfa) + (top.getY() - y0) * cos(alfa);
     float x1 = x0 + (bottom.getX() - x0) * cos(alfa) - (bottom.getY() - y0) * sin(alfa);
     float y1 = y0 + (bottom.getX() - x0) * sin(alfa) + (bottom.getY() - y0) * cos(alfa);
-    primitiveRenderer.drawIncrementalLine(window, x1, y1, x2, y2);
 
+   
+    top.setXY(x2, y2);
+    bottom.setXY(x1, y1);
 }
+
 
 void LineSegment::scaling00(sf::RenderWindow& window, float k)
 {

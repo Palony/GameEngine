@@ -18,9 +18,9 @@ public:
 	sf::Vector2f get_bottom();
 
 	void draw_line(sf::RenderWindow& window);
-	void translation(sf::RenderWindow& window, float tx, float ty);
+	void translation(float tx, float ty);
 	void rotation00(sf::RenderWindow& window, float alfa);
-	void rotationXY(sf::RenderWindow& window, float alfa, float x0, float y0);
+	void rotationXY(float alfa, float x0, float y0);
 	void scaling00(sf::RenderWindow& window, float k);
 	void scalingXY(sf::RenderWindow& window, float k, float x0, float y0);
 

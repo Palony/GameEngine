@@ -1,4 +1,5 @@
 #include "Circle.h"
+#include <cmath>
 
 void Circle::draw(sf::RenderWindow& window)
 {
@@ -11,9 +12,9 @@ void Circle::draw(sf::RenderWindow& window)
 void Circle::drawQuarter(int x_sign, int y_sign, sf::RenderWindow& window)
 {
     const float M_PI = 3.14159265359f; // PI
-    float alfa = 0.0f; // kat
+    float alfa = 0.0f; // k¹t
     const float R = getR();
-    const float inc = 1.0f / R; //stala któr¹ inkrementujemy k¹t
+    const float inc = 1.0f / R; // stala któr¹ inkrementujemy k¹t
 
     while (alfa <= M_PI / 2)
     {
@@ -30,4 +31,25 @@ void Circle::drawQuarter(int x_sign, int y_sign, sf::RenderWindow& window)
 float Circle::getR()
 {
     return R;
+}
+
+void Circle::fall(sf::RenderWindow& window, float ty)
+{
+  
+    setY(getY() + ty);
+
+  
+    float windowHeight = window.getSize().y;
+
+  
+    if (getY() - R > windowHeight)
+    {
+        resetPosition();
+    }
+}
+
+void Circle::resetPosition()
+{
+    
+    setXY(initialX, -R); 
 }

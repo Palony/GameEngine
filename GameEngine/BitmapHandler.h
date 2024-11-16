@@ -22,6 +22,8 @@ public:
     void setPixel(unsigned int x, unsigned int y, sf::Color color);   
     sf::Color getPixel(unsigned int x, unsigned int y) const; 
     void draw(sf::RenderWindow& window);
+    void setPosition(float x, float y);
+    void fall(float speed);
 };
 
 

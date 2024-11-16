@@ -2,19 +2,29 @@
 #include "DrawableObject.h"
 #include "TransformableObject.h"
 
-class Circle :public DrawableObject, TransformableObject
+class Circle : public DrawableObject, TransformableObject
 {
-	float R;
-	sf::RenderWindow window;
+private:
+    float R;
+    float speed; 
+    float initialX, initialY; // Pocz¹tkowe pozycje okrêgu
+
 public:
-	Circle(float x, float y, float R)
-	{
-		this->setXY(x, y);
-		this->R = R;
-	}
-	void draw(sf::RenderWindow& window);
-	void drawQuarter(int x_sign, int y_sign, sf::RenderWindow& window);
-	float getR();
+    Circle(float x, float y, float R)
+    {
+        this->setXY(x, y);
+        this->R = R;
+        this->speed = 1.0f; 
 
+        
+        this->initialX = x;
+        this->initialY = y;
+    }
+
+    void draw(sf::RenderWindow& window);
+    void drawQuarter(int x_sign, int y_sign, sf::RenderWindow& window);
+    float getR();
+
+    void fall(sf::RenderWindow& window, float ty);
+    void resetPosition();
 };
-
