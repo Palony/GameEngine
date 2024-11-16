@@ -1,11 +1,12 @@
 #include <SFML/Graphics.hpp>
 #include <string>
+#include "BitmapObject.h"
 
-class BitmapHandler {
+
+class BitmapHandler:public BitmapObject {
 private:
     sf::Image image;        
-    sf::Texture texture;     
-    sf::Sprite sprite;      
+    sf::Texture texture;        
 
 public:
    
@@ -21,9 +22,10 @@ public:
     sf::Vector2u getSize() const;    
     void setPixel(unsigned int x, unsigned int y, sf::Color color);   
     sf::Color getPixel(unsigned int x, unsigned int y) const; 
-    void draw(sf::RenderWindow& window);
+    void draw(sf::RenderWindow& window) override;
     void setPosition(float x, float y);
     void fall(float speed);
+    void Bitmapmoveleft(float speed);
 };
 
 

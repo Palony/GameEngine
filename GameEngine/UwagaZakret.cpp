@@ -3,6 +3,7 @@
 
 PrimitiveRenderer primitiverenderer;
 
+
 int main() {
     Engine engine;
 
@@ -66,7 +67,7 @@ int main() {
         circle6.fall(*engine.window, 1.0f);
         circle6.draw(*engine.window);
 
-        bitmap.fall(5);
+        //bitmap.fall(5);
         bitmap.draw(*engine.window);
         
        

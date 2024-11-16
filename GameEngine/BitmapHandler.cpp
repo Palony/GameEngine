@@ -79,3 +79,10 @@ void BitmapHandler::fall(float speed) {
     position.y += speed;
     sprite.setPosition(position);
 }
+
+void BitmapHandler::Bitmapmoveleft(float speed)
+{
+    sf::Vector2f position = sprite.getPosition();
+    position.y += speed;
+    sprite.setPosition(position);
+}

@@ -32,6 +32,8 @@ public:
 	sf::Event event; //zdarzenia
 	sf::Clock clock; //zegar
 	sf::Time time1;
+	BitmapHandler bitmap;
+
 	const bool running();
 
 

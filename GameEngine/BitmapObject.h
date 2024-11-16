@@ -11,7 +11,10 @@
 
 class BitmapObject :public DrawableObject, TransformableObject
 {
+protected:
 	sf::Sprite sprite;
 	sf::RenderWindow window;
-	void draw(sf::RenderWindow& window);
+public:
+	BitmapObject(){}
+	virtual void draw(sf::RenderWindow& window);
 };
