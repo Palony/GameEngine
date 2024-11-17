@@ -128,9 +128,9 @@ void PrimitiveRenderer::drawTriangle(sf::RenderWindow& window, float x0, float y
 void PrimitiveRenderer::drawRectangle(sf::RenderWindow& window, float w0, float w1, float h0, float h1)
 {
     drawIncrementalLine(window, w0, h0, w1, h0);
-   drawIncrementalLine(window, w1, h0, w1, h1);
+    drawIncrementalLine(window, w1, h0, w1, h1);
     drawIncrementalLine(window, w1, h1, w0, h1);
-   drawIncrementalLine(window, w0, h1, w0, h0);
+    drawIncrementalLine(window, w0, h1, w0, h0);
 }
 
 void PrimitiveRenderer::drawPolygon(sf::RenderWindow& window, int angles) {
@@ -167,6 +167,7 @@ void PrimitiveRenderer::drawPolygon(sf::RenderWindow& window, int angles) {
     delete[] arrayX;
     delete[] arrayY;
 }
+
 
 
 

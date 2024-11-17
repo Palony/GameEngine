@@ -26,6 +26,9 @@ public:
     void draw(sf::RenderWindow& window) override;
     void setPosition(float x, float y);
     void fall(float speed);
+    
+    const sf::Image& getImage() const;
+
 };
 
 

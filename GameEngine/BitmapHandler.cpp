@@ -78,3 +78,7 @@ void BitmapHandler::fall(float speed) {
     position.y += speed;
     sprite.setPosition(position);
 }
+
+const sf::Image& BitmapHandler::getImage() const {
+    return image;
+}

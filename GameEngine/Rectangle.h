@@ -12,8 +12,11 @@ private:
     LineSegment side3;
     LineSegment side4;
 
-    // Przechowywanie pocz¹tkowych pozycji
+    // Wspó³rzêdne pocz¹tkowe
     float w0_init, h0_init, w1_init, h1_init;
+
+    // Wspó³rzêdne aktualne
+    float w0, h0, w1, h1;
 
     // K¹t obrotu
     float rotationAngle = 0.0f;
@@ -24,6 +27,11 @@ public:
     void draw(sf::RenderWindow& window);
     void fall(sf::RenderWindow& window, float ty);
     void resetPosition();
+    void updatePoints();
 
-
+    // Gettery dla wspó³rzêdnych pocz¹tkowych
+    float getW0() const;
+    float getH0() const;
+    float getW1() const;
+    float getH1() const;
 };

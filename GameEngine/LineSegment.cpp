@@ -10,6 +10,7 @@ void LineSegment::set_bottom(float x, float y)
     bottom.setXY(x, y);
 }
 
+
 sf::Vector2f LineSegment::get_top()
 {
     return top.getXY();

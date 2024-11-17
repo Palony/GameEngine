@@ -3,6 +3,7 @@
 
 void Circle::draw(sf::RenderWindow& window)
 {
+    points.clear(); // Czyœæ punkty przed narysowaniem ko³a
     drawQuarter(1, -1, window);
     drawQuarter(1, 1, window);
     drawQuarter(-1, 1, window);
@@ -55,9 +56,10 @@ void Circle::fall(sf::RenderWindow& window, float ty)
 
 void Circle::resetPosition()
 {
-    
+    points.clear(); // czyœci wektor punktów
     setXY(initialX, -R); 
 }
+
 
 void Circle::addPoints(sf::Vector2f pos)
 {
@@ -65,7 +67,7 @@ void Circle::addPoints(sf::Vector2f pos)
    
 }
 
-std::vector<sf::Vector2f> Circle::getPoints()
+std::vector<sf::Vector2f> Circle::getPoints()const
 {
-    return std::vector<sf::Vector2f>();
+    return points;
 }

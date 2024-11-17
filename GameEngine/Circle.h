@@ -9,7 +9,7 @@ private:
     float R;
     float speed; 
     float initialX, initialY; // Pocz¹tkowe pozycje okrêgu
-    std::vector< sf::Vector2f>points;
+    std::vector<sf::Vector2f> points; //Wektor zawieraj¹cy punkty okrêgu
 
 public:
     Circle(float x, float y, float R)
@@ -30,5 +30,5 @@ public:
     void fall(sf::RenderWindow& window, float ty);
     void resetPosition();
     void addPoints(sf::Vector2f pos);
-    std::vector<sf::Vector2f> getPoints();
+    std::vector<sf::Vector2f> getPoints() const;
 };

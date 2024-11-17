@@ -15,6 +15,7 @@ using namespace std;
 
 class PrimitiveRenderer
 {
+
 public:
 	sf::Vertex vertex;
 	sf::RenderWindow window;
