@@ -2,8 +2,8 @@
 #include <algorithm>
 #include <cmath>
 
-Rectangle::Rectangle(float w0, float h0, float w1, float h1)
-    : w0_init(w0), h0_init(h0), w1_init(w1), h1_init(h1)
+Rectangle::Rectangle(float w0, float h0, float w1, float h1, sf::Color color)
+    : w0_init(w0), h0_init(h0), w1_init(w1), h1_init(h1), fillColor(color)
 {
     // Inicjalizacja wspó³rzêdnych pocz¹tkowych
     w0 = w0_init;
@@ -27,6 +27,26 @@ Rectangle::Rectangle(float w0, float h0, float w1, float h1)
 
 void Rectangle::draw(sf::RenderWindow& window)
 {
+    // Upewniamy siê, ¿e wspó³rzêdne s¹ uporz¹dkowane
+    float w0 = this->w0;
+    float h0 = this->h0;
+    float w1 = this->w1;
+    float h1 = this->h1;
+
+    if (w0 > w1) std::swap(w0, w1);
+    if (h0 > h1) std::swap(h0, h1);
+
+    // Wype³nianie prostok¹ta
+    for (float y = h0; y <= h1; ++y)
+    {
+        for (float x = w0; x <= w1; ++x)
+        {
+            sf::Vertex pixel(sf::Vector2f(x, y), fillColor);
+            window.draw(&pixel, 1, sf::Points);
+        }
+    }
+
+    // Opcjonalnie rysowanie boków prostok¹ta
     side1.draw_line(window);
     side2.draw_line(window);
     side3.draw_line(window);
@@ -40,7 +60,6 @@ void Rectangle::fall(sf::RenderWindow& window, float ty)
     side2.translation(0, ty);
     side3.translation(0, ty);
     side4.translation(0, ty);
-
 
     updatePoints(); // Aktualizacja wspó³rzêdnych po rotacji
 
@@ -87,7 +106,7 @@ void Rectangle::updatePoints()
     h0 = side1.get_top().y;
 
     w1 = side2.get_top().x;
-    h1 = side2.get_top().y;
+    h1 = side2.get_bottom().y; // Poprawka, aby h1 by³o poprawne
 }
 
 float Rectangle::getW0() const

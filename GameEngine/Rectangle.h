@@ -3,6 +3,7 @@
 #include "TransformableObject.h"
 #include "PrimitiveRenderer.h"
 #include "LineSegment.h"
+#include <SFML/Graphics.hpp> // Dodaj to, jeœli nie by³o wczeœniej
 
 class Rectangle : public DrawableObject, TransformableObject
 {
@@ -21,8 +22,11 @@ private:
     // K¹t obrotu
     float rotationAngle = 0.0f;
 
+    // Kolor wype³nienia
+    sf::Color fillColor;
+
 public:
-    Rectangle(float w0, float h0, float w1, float h1);
+    Rectangle(float w0, float h0, float w1, float h1, sf::Color color = sf::Color::White);
 
     void draw(sf::RenderWindow& window);
     void fall(sf::RenderWindow& window, float ty);

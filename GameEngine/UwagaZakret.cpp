@@ -123,20 +123,24 @@ bool checkRectangleCollisionWithBitmap(const Rectangle& rectangle, Player& bitma
 int main() {
     Engine engine;
     Player player;
-    Triangle triangle(450, -200, 450, -100, 500, -100);
-    Triangle triangle2(350, -50, 350, 0, 400, 0);
-    Triangle triangle3(250, 150, 250, 0, 300, 0);
+    Triangle triangle(450, -200, 450, -100, 500, -100, sf::Color::Cyan);
+    Triangle triangle2(350, -50, 350, 0, 400, 0,sf::Color::Red);
+    Triangle triangle3(250, 150, 250, 0, 300, 0, sf::Color::Magenta);
+
+    
 
 
-    Circle circle(750.0f, 0, 15.0f);
-    Circle circle2(600.0f, -50, 15.0f);
+
+
+    Circle circle(775.0f, 0, 15.0f);
+    Circle circle2(550.0f, -50, 15.0f);
     Circle circle3(450.0f, -250, 15.0f);
     Circle circle4(300.0f, -400, 15.0f);
     Circle circle5(200.0f, 0, 15.0f);
     Circle circle6(50.0f, -200, 15.0f);
 
-    Rectangle rectangle(600, 0, 650.0f, -50.0f);
-    Rectangle rectangle2(750.0f, 0, 720, -100.0f);
+    Rectangle rectangle(600, 0, 650.0f, -50.0f, sf::Color::Blue);
+    Rectangle rectangle2(750.0f, 0, 720, -100.0f, sf::Color::Green);
 
     Player bitmap;
    // bitmap.setXY(400.f, 500.0f);
@@ -155,6 +159,7 @@ int main() {
     engine.initWindow();
     engine.time();
 
+
    // if (!bitmap.loadFromFile("sprite_sheet.png")) {
     //    std::cerr << "Nie mozna wczytac pliku bitmapy!" << std::endl;
    //     return -1;
@@ -168,6 +173,10 @@ int main() {
         engine.window->clear();
 
         // Rysowanie ró¿nych obiektów
+      
+
+
+    
         triangle.fall(*engine.window, 1.0f);
         triangle.draw(*engine.window);
         triangle2.fall(*engine.window, 1.0f);
@@ -175,6 +184,7 @@ int main() {
         triangle3.fall(*engine.window, 1.0f);
         triangle3.draw(*engine.window);
 
+        
         rectangle.fall(*engine.window, 1.0f);
         rectangle.draw(*engine.window);
         rectangle2.fall(*engine.window, 1.0f);

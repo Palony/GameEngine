@@ -1,15 +1,17 @@
 #include "Triangle.h"
+#include <algorithm>
+#include <cmath>
 
-Triangle::Triangle(float x0, float y0, float x1, float y1, float x2, float y2)
-    : x0_init(x0), y0_init(y0), x1_init(x1), y1_init(y1), x2_init(x2), y2_init(y2)
+Triangle::Triangle(float x0, float y0, float x1, float y1, float x2, float y2, sf::Color color)
+    : x0_init(x0), y0_init(y0), x1_init(x1), y1_init(y1), x2_init(x2), y2_init(y2), fillColor(color)
 {
     // Inicjalizacja wspó³rzêdnych pocz¹tkowych
-    x0 = x0_init;
-    y0 = y0_init;
-    x1 = x1_init;
-    y1 = y1_init;
-    x2 = x2_init;
-    y2 = y2_init;
+    this->x0 = x0_init;
+    this->y0 = y0_init;
+    this->x1 = x1_init;
+    this->y1 = y1_init;
+    this->x2 = x2_init;
+    this->y2 = y2_init;
 
     // Inicjalizacja segmentów linii
     side1.set_top(x0, y0);
@@ -48,6 +50,37 @@ float Triangle::getY2() const {
 
 void Triangle::draw(sf::RenderWindow& window)
 {
+    // ZnajdŸ prostok¹t otaczaj¹cy trójk¹t
+    int minX = static_cast<int>(std::floor(std::min({ x0, x1, x2 })));
+    int maxX = static_cast<int>(std::ceil(std::max({ x0, x1, x2 })));
+    int minY = static_cast<int>(std::floor(std::min({ y0, y1, y2 })));
+    int maxY = static_cast<int>(std::ceil(std::max({ y0, y1, y2 })));
+
+    // Iteruj po pikselach w prostok¹cie otaczaj¹cym
+    for (int y = minY; y <= maxY; ++y)
+    {
+        for (int x = minX; x <= maxX; ++x)
+        {
+            // SprawdŸ, czy punkt (x, y) le¿y wewn¹trz trójk¹ta
+            float alpha, beta, gamma;
+            float denominator = ((y1 - y2) * (x0 - x2) + (x2 - x1) * (y0 - y2));
+
+            if (denominator == 0)
+                continue; // Unikaj dzielenia przez zero
+
+            alpha = ((y1 - y2) * (x - x2) + (x2 - x1) * (y - y2)) / denominator;
+            beta = ((y2 - y0) * (x - x2) + (x0 - x2) * (y - y2)) / denominator;
+            gamma = 1.0f - alpha - beta;
+
+            if (alpha >= 0 && beta >= 0 && gamma >= 0)
+            {
+                sf::Vertex pixel(sf::Vector2f(static_cast<float>(x), static_cast<float>(y)), fillColor);
+                window.draw(&pixel, 1, sf::Points);
+            }
+        }
+    }
+
+    // Opcjonalnie rysuj boki trójk¹ta
     side1.draw_line(window);
     side2.draw_line(window);
     side3.draw_line(window);
@@ -55,7 +88,9 @@ void Triangle::draw(sf::RenderWindow& window)
 
 void Triangle::fall(sf::RenderWindow& window, float ty)
 {
+    // Aktualizacja punktów przed translacj¹
     updatePoints();
+
     // Translacja
     side1.translation(0, ty);
     side2.translation(0, ty);
@@ -68,11 +103,10 @@ void Triangle::fall(sf::RenderWindow& window, float ty)
     rotationAngle += 1.0f;
     if (rotationAngle >= 360.0f)
         rotationAngle -= 360.0f;
-    updatePoints();
 
     // Wspó³rzêdne œrodka masy trójk¹ta
-    float centerX = (side1.get_top().x + side2.get_top().x + side3.get_top().x) / 3.0f;
-    float centerY = (side1.get_top().y + side2.get_top().y + side3.get_top().y) / 3.0f;
+    float centerX = (x0 + x1 + x2) / 3.0f;
+    float centerY = (y0 + y1 + y2) / 3.0f;
 
     // Rotacja wokó³ œrodka masy
     side1.rotationXY(1.0f, centerX, centerY);
@@ -84,11 +118,7 @@ void Triangle::fall(sf::RenderWindow& window, float ty)
 
     // Sprawdzanie, czy trójk¹t przekroczy³ ekran
     float windowHeight = window.getSize().y;
-    float maxY = std::max({
-        side1.get_top().y, side1.get_bottom().y,
-        side2.get_top().y, side2.get_bottom().y,
-        side3.get_top().y, side3.get_bottom().y
-        });
+    float maxY = std::max({ y0, y1, y2 });
 
     if (maxY > windowHeight)
     {
@@ -111,6 +141,9 @@ void Triangle::resetPosition()
 
     // Resetowanie k¹ta obrotu
     rotationAngle = 0.0f;
+
+    // Aktualizacja punktów
+    updatePoints();
 }
 
 void Triangle::updatePoints()
