@@ -152,7 +152,7 @@ int main() {
        return -1;
     }
 
-
+    //komenatrz
 
     // Inicjalizacja silnika
     engine.initializeVariables();
