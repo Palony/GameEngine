@@ -122,7 +122,7 @@ bool checkRectangleCollisionWithBitmap(const Rectangle& rectangle, Player& bitma
 
 int main() {
     Engine engine;
-
+    Player player;
     Triangle triangle(450, -200, 450, -100, 500, -100);
     Triangle triangle2(350, -50, 350, 0, 400, 0);
     Triangle triangle3(250, 150, 250, 0, 300, 0);
@@ -139,11 +139,14 @@ int main() {
     Rectangle rectangle2(750.0f, 0, 720, -100.0f);
 
     Player bitmap;
-    bitmap.setXY(400.f, 500.0f);
-    bitmap.setPosition(400.f, 500.0f);
+   // bitmap.setXY(400.f, 500.0f);
+  //  bitmap.setPosition(400.f, 500.0f);
 
 
-
+    if (!player.loadFromFile("ruch.png")) {
+        std::cerr << "Nie mozna wczytac pliku bitmapy!" << std::endl;
+       return -1;
+    }
 
 
 
@@ -152,10 +155,10 @@ int main() {
     engine.initWindow();
     engine.time();
 
-    if (!bitmap.loadFromFile("steve.png")) {
-        std::cerr << "Nie mozna wczytac pliku bitmapy!" << std::endl;
-        return -1;
-    }
+   // if (!bitmap.loadFromFile("sprite_sheet.png")) {
+    //    std::cerr << "Nie mozna wczytac pliku bitmapy!" << std::endl;
+   //     return -1;
+  //  }
 
     // G³ówna pêtla gry
     while (engine.running()) {
@@ -247,7 +250,8 @@ int main() {
         bitmap.draw(*engine.window);
 
 
-
+        player.handleInput(*engine.window);
+        player.draw(*engine.window);
 
         // Wyœwietlanie
         engine.window->display();
