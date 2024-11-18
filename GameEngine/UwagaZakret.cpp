@@ -3,7 +3,7 @@
 
 
 
-//PrimitiveRenderer primitiverenderer;
+PrimitiveRenderer primitiverenderer;
 
 
 /**
@@ -18,7 +18,7 @@
  * @param bitmapImage Obrazek bitmapy (zawiera dane o pikselach).
  * @return true, jeœli nast¹pi³a kolizja, false w przeciwnym przypadku.
  */
-/*
+
 bool checkPixelCollision(const Circle& circle, Player& bitmap, const sf::Image& bitmapImage) {
     // Pobierz punkty ko³a
     const auto& points = circle.getPoints();
@@ -54,7 +54,7 @@ bool checkPixelCollision(const Circle& circle, Player& bitmap, const sf::Image& 
     return false;
 }
 
-*/
+
 /**
  * @brief Funkcja sprawdzaj¹ca, czy punkt (px, py) le¿y w obrêbie bitmapy.
  *
@@ -67,14 +67,14 @@ bool checkPixelCollision(const Circle& circle, Player& bitmap, const sf::Image& 
  * @param bitmapImage Obiekt obrazka bitmapy, w którym sprawdzamy kolizjê.
  * @return true, jeœli punkt le¿y w obrêbie bitmapy, false w przeciwnym przypadku.
  */
-/*
+
 bool checkVertexCollisionWithBitmap(float px, float py, float bitmapX, float bitmapY, const sf::Image& bitmapImage) {
     // Funkcja sprawdzaj¹ca, czy punkt (px, py) znajduje siê w obrêbie bitmapy
     sf::Vector2u size = bitmapImage.getSize();
 
     // Sprawdzenie, czy punkt le¿y w obrêbie bitmapy
     return px >= bitmapX && px < bitmapX + size.x && py >= bitmapY && py < bitmapY + size.y;
-}*/
+}
 
 /**
  * @brief Funkcja sprawdzaj¹ca kolizjê trójk¹ta z bitmap¹.
@@ -86,7 +86,7 @@ bool checkVertexCollisionWithBitmap(float px, float py, float bitmapX, float bit
  * @param bitmapImage Obrazek bitmapy (zawiera dane o pikselach).
  * @return true, jeœli nast¹pi³a kolizja, false w przeciwnym przypadku.
  */
-/*
+
 bool checkTriangleCollisionWithBitmap(const Triangle& triangle, Player& bitmap, const sf::Image& bitmapImage) {
     // Pobieramy pozycje wierzcho³ków trójk¹ta
     float x0 = triangle.getX0(); // Funkcje do pobierania pozycji wierzcho³ków trójk¹ta
@@ -116,7 +116,7 @@ bool checkTriangleCollisionWithBitmap(const Triangle& triangle, Player& bitmap, 
     // Jeœli ¿aden wierzcho³ek nie le¿y w bitmapie, zwróæ false
     return false;
 }
-*/
+
 /**
  * @brief Funkcja sprawdzaj¹ca kolizjê prostok¹ta z bitmap¹.
  *
@@ -127,7 +127,7 @@ bool checkTriangleCollisionWithBitmap(const Triangle& triangle, Player& bitmap, 
  * @param bitmapImage Obrazek bitmapy (zawiera dane o pikselach).
  * @return true, jeœli nast¹pi³a kolizja, false w przeciwnym przypadku.
  */
-/*
+
 bool checkRectangleCollisionWithBitmap(const Rectangle& rectangle, Player& bitmap, const sf::Image& bitmapImage) {
     // Pobierz wspó³rzêdne wierzcho³ków prostok¹ta
     float x0 = rectangle.getW0();
@@ -314,4 +314,3 @@ int main() {
 
     return 0;
 }
-*/

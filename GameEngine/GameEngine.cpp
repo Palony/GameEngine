@@ -1,6 +1,6 @@
 ﻿#include "Engine.h"
 
-
+/*
 
 
 int main() {
@@ -34,7 +34,7 @@ int main() {
         engine.clear();
 
         //Rysowanie  linii
-        
+        */
         /*
         line.set_top(250, 150);
         line.set_bottom(250, 450);
@@ -101,12 +101,12 @@ int main() {
         //bitmap.clear(); //usuwa bitmape
         */
 
-
+/*
         engine.render();
     }
 
     return 0;
 }
-
+*/
 
 
