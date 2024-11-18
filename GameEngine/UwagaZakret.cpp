@@ -3,11 +3,22 @@
 
 
 
-PrimitiveRenderer primitiverenderer;
+//PrimitiveRenderer primitiverenderer;
 
 
-
-
+/**
+ * @brief Funkcja sprawdzaj¹ca kolizjê pomiêdzy punktem ko³a a bitmap¹.
+ *
+ * Funkcja iteruje przez punkty ko³a i sprawdza, czy którykolwiek z nich
+ * znajduje siê w obrêbie bitmapy, a tak¿e czy odpowiadaj¹cy mu piksel
+ * nie jest przezroczysty. Jeœli tak, zwraca true, oznaczaj¹c kolizjê.
+ *
+ * @param circle Ko³o, którego kolizja jest sprawdzana.
+ * @param bitmap Obiekt reprezentuj¹cy bitmapê (np. postaæ gracza).
+ * @param bitmapImage Obrazek bitmapy (zawiera dane o pikselach).
+ * @return true, jeœli nast¹pi³a kolizja, false w przeciwnym przypadku.
+ */
+/*
 bool checkPixelCollision(const Circle& circle, Player& bitmap, const sf::Image& bitmapImage) {
     // Pobierz punkty ko³a
     const auto& points = circle.getPoints();
@@ -43,16 +54,39 @@ bool checkPixelCollision(const Circle& circle, Player& bitmap, const sf::Image& 
     return false;
 }
 
-
-
+*/
+/**
+ * @brief Funkcja sprawdzaj¹ca, czy punkt (px, py) le¿y w obrêbie bitmapy.
+ *
+ * Sprawdza, czy wspó³rzêdne punktu mieszcz¹ siê w granicach prostok¹tnej bitmapy.
+ *
+ * @param px Wspó³rzêdna x punktu.
+ * @param py Wspó³rzêdna y punktu.
+ * @param bitmapX Wspó³rzêdna x lewego górnego rogu bitmapy.
+ * @param bitmapY Wspó³rzêdna y lewego górnego rogu bitmapy.
+ * @param bitmapImage Obiekt obrazka bitmapy, w którym sprawdzamy kolizjê.
+ * @return true, jeœli punkt le¿y w obrêbie bitmapy, false w przeciwnym przypadku.
+ */
+/*
 bool checkVertexCollisionWithBitmap(float px, float py, float bitmapX, float bitmapY, const sf::Image& bitmapImage) {
     // Funkcja sprawdzaj¹ca, czy punkt (px, py) znajduje siê w obrêbie bitmapy
     sf::Vector2u size = bitmapImage.getSize();
 
     // Sprawdzenie, czy punkt le¿y w obrêbie bitmapy
     return px >= bitmapX && px < bitmapX + size.x && py >= bitmapY && py < bitmapY + size.y;
-}
+}*/
 
+/**
+ * @brief Funkcja sprawdzaj¹ca kolizjê trójk¹ta z bitmap¹.
+ *
+ * Sprawdza, czy którykolwiek z wierzcho³ków trójk¹ta znajduje siê w obrêbie bitmapy.
+ *
+ * @param triangle Trójk¹t, którego kolizja z bitmap¹ jest sprawdzana.
+ * @param bitmap Obiekt reprezentuj¹cy bitmapê (np. postaæ gracza).
+ * @param bitmapImage Obrazek bitmapy (zawiera dane o pikselach).
+ * @return true, jeœli nast¹pi³a kolizja, false w przeciwnym przypadku.
+ */
+/*
 bool checkTriangleCollisionWithBitmap(const Triangle& triangle, Player& bitmap, const sf::Image& bitmapImage) {
     // Pobieramy pozycje wierzcho³ków trójk¹ta
     float x0 = triangle.getX0(); // Funkcje do pobierania pozycji wierzcho³ków trójk¹ta
@@ -82,8 +116,18 @@ bool checkTriangleCollisionWithBitmap(const Triangle& triangle, Player& bitmap, 
     // Jeœli ¿aden wierzcho³ek nie le¿y w bitmapie, zwróæ false
     return false;
 }
-
-
+*/
+/**
+ * @brief Funkcja sprawdzaj¹ca kolizjê prostok¹ta z bitmap¹.
+ *
+ * Sprawdza, czy którykolwiek z wierzcho³ków prostok¹ta le¿y w obrêbie bitmapy.
+ *
+ * @param rectangle Prostok¹t, którego kolizja z bitmap¹ jest sprawdzana.
+ * @param bitmap Obiekt reprezentuj¹cy bitmapê (np. postaæ gracza).
+ * @param bitmapImage Obrazek bitmapy (zawiera dane o pikselach).
+ * @return true, jeœli nast¹pi³a kolizja, false w przeciwnym przypadku.
+ */
+/*
 bool checkRectangleCollisionWithBitmap(const Rectangle& rectangle, Player& bitmap, const sf::Image& bitmapImage) {
     // Pobierz wspó³rzêdne wierzcho³ków prostok¹ta
     float x0 = rectangle.getW0();
@@ -143,14 +187,14 @@ int main() {
     Rectangle rectangle2(750.0f, 0, 720, -100.0f, sf::Color::Green);
 
     Player bitmap;
-   // bitmap.setXY(400.f, 500.0f);
+    bitmap.setXY(400.f, 500.0f);
   //  bitmap.setPosition(400.f, 500.0f);
 
 
-    if (!player.loadFromFile("ruch.png")) {
-        std::cerr << "Nie mozna wczytac pliku bitmapy!" << std::endl;
-       return -1;
-    }
+    //if (!player.loadFromFile("ruch.png")) {
+     //   std::cerr << "Nie mozna wczytac pliku bitmapy!" << std::endl;
+    //   return -1;
+   // }
 
     //komenatrz
 
@@ -176,7 +220,7 @@ int main() {
       
 
 
-    
+    // Rysowanie trójk¹tów
         triangle.fall(*engine.window, 1.0f);
         triangle.draw(*engine.window);
         triangle2.fall(*engine.window, 1.0f);
@@ -184,12 +228,12 @@ int main() {
         triangle3.fall(*engine.window, 1.0f);
         triangle3.draw(*engine.window);
 
-        
+        // Rysowanie prostok¹tów
         rectangle.fall(*engine.window, 1.0f);
         rectangle.draw(*engine.window);
         rectangle2.fall(*engine.window, 1.0f);
         rectangle2.draw(*engine.window);
-
+        // Rysowanie kó³
         circle.fall(*engine.window, 1.0f);
         circle.draw(*engine.window);
         circle2.fall(*engine.window, 1.0f);
@@ -203,7 +247,7 @@ int main() {
         circle6.fall(*engine.window, 1.0f);
         circle6.draw(*engine.window);
 
-
+        // Sprawdzanie kolizji z okrêgami (jeœli kolizja, koñczymy grê)
         if (checkPixelCollision(circle, bitmap, bitmap.getImage())) {
             exit(0);
         }
@@ -233,18 +277,18 @@ int main() {
         }
 
 
-
+        // Sprawdzanie kolizji z trójk¹tami (jeœli kolizja, koñczymy grê)
   
         if (checkTriangleCollisionWithBitmap(triangle, bitmap, bitmap.getImage())) {
-            exit(0);
+            engine.closeEngine();
         }
         if (checkTriangleCollisionWithBitmap(triangle2, bitmap, bitmap.getImage())) {
-            exit(0);
+            engine.closeEngine();
         }
         if (checkTriangleCollisionWithBitmap(triangle3, bitmap, bitmap.getImage())) {
-            exit(0);
+            engine.closeEngine();
         }
-
+        // Sprawdzanie kolizji z prostok¹tami (jeœli kolizja, koñczymy grê)
         if (checkRectangleCollisionWithBitmap(rectangle, bitmap, bitmap.getImage())) {
             exit(0);
         }
@@ -255,13 +299,14 @@ int main() {
 
 
 
-
+        // Obs³uga wejœcia od gracza
         bitmap.handleInput(*engine.window);
+        // Rysowanie bitmapy gracza
         bitmap.draw(*engine.window);
 
 
-        player.handleInput(*engine.window);
-        player.draw(*engine.window);
+      //  player.handleInput(*engine.window);
+      //  player.draw(*engine.window);
 
         // Wyœwietlanie
         engine.window->display();
@@ -269,3 +314,4 @@ int main() {
 
     return 0;
 }
+*/

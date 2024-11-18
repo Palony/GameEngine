@@ -2,6 +2,14 @@
 #include <algorithm>
 #include <cmath>
 
+/**
+ * @brief Konstruktor klasy Rectangle.
+ * @param w0 Pocz¹tkowa wspó³rzêdna x lewego górnego rogu.
+ * @param h0 Pocz¹tkowa wspó³rzêdna y lewego górnego rogu.
+ * @param w1 Pocz¹tkowa wspó³rzêdna x prawego dolnego rogu.
+ * @param h1 Pocz¹tkowa wspó³rzêdna y prawego dolnego rogu.
+ * @param color Kolor wype³nienia prostok¹ta.
+ */
 Rectangle::Rectangle(float w0, float h0, float w1, float h1, sf::Color color)
     : w0_init(w0), h0_init(h0), w1_init(w1), h1_init(h1), fillColor(color)
 {
@@ -25,6 +33,10 @@ Rectangle::Rectangle(float w0, float h0, float w1, float h1, sf::Color color)
     side4.set_bottom(w0, h0);
 }
 
+/**
+ * @brief Rysuje prostok¹t w oknie SFML.
+ * @param window Okno, w którym prostok¹t zostanie narysowany.
+ */
 void Rectangle::draw(sf::RenderWindow& window)
 {
     // Upewniamy siê, ¿e wspó³rzêdne s¹ uporz¹dkowane
@@ -53,6 +65,11 @@ void Rectangle::draw(sf::RenderWindow& window)
     side4.draw_line(window);
 }
 
+/**
+ * @brief Powoduje "opadanie" prostok¹ta w dó³ o okreœlon¹ wartoœæ przesuniêcia.
+ * @param window Okno SFML do rysowania.
+ * @param ty Przesuniêcie w osi y.
+ */
 void Rectangle::fall(sf::RenderWindow& window, float ty)
 {
     // Translacja prostok¹ta
@@ -79,6 +96,9 @@ void Rectangle::fall(sf::RenderWindow& window, float ty)
     }
 }
 
+/**
+ * @brief Resetuje pozycjê prostok¹ta do wartoœci pocz¹tkowych.
+ */
 void Rectangle::resetPosition()
 {
     // Przywracanie pocz¹tkowej pozycji
@@ -99,6 +119,9 @@ void Rectangle::resetPosition()
     updatePoints();
 }
 
+/**
+ * @brief Aktualizuje bie¿¹ce wspó³rzêdne prostok¹ta na podstawie pozycji boków.
+ */
 void Rectangle::updatePoints()
 {
     // Aktualizowanie bie¿¹cych wspó³rzêdnych na podstawie pozycji boków
@@ -109,21 +132,37 @@ void Rectangle::updatePoints()
     h1 = side2.get_bottom().y; // Poprawka, aby h1 by³o poprawne
 }
 
+/**
+ * @brief Zwraca wspó³rzêdn¹ x lewego górnego rogu prostok¹ta.
+ * @return Wspó³rzêdna x lewego górnego rogu.
+ */
 float Rectangle::getW0() const
 {
     return w0;
 }
 
+/**
+ * @brief Zwraca wspó³rzêdn¹ y lewego górnego rogu prostok¹ta.
+ * @return Wspó³rzêdna y lewego górnego rogu.
+ */
 float Rectangle::getH0() const
 {
     return h0;
 }
 
+/**
+ * @brief Zwraca wspó³rzêdn¹ x prawego dolnego rogu prostok¹ta.
+ * @return Wspó³rzêdna x prawego dolnego rogu.
+ */
 float Rectangle::getW1() const
 {
     return w1;
 }
 
+/**
+ * @brief Zwraca wspó³rzêdn¹ y prawego dolnego rogu prostok¹ta.
+ * @return Wspó³rzêdna y prawego dolnego rogu.
+ */
 float Rectangle::getH1() const
 {
     return h1;

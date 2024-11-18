@@ -1,5 +1,14 @@
 #include "game.h"
 
+/**
+ * @brief Sprawdza, czy którykolwiek z wierzcho³ków prostok¹ta koliduje z bitmap¹.
+ * @param px Pozycja X punktu prostok¹ta.
+ * @param py Pozycja Y punktu prostok¹ta.
+ * @param bitmapX Pozycja X bitmapy.
+ * @param bitmapY Pozycja Y bitmapy.
+ * @param bitmapImage Obiekt sf::Image reprezentuj¹cy bitmapê.
+ * @return Zwraca true, jeœli wierzcho³ek prostok¹ta znajduje siê w obrêbie bitmapy, w przeciwnym razie false.
+ */
 bool game::checkVertexCollisionWithBitmap(float px, float py, float bitmapX, float bitmapY, const sf::Image& bitmapImage)
 {
     // Pobierz wspó³rzêdne wierzcho³ków prostok¹ta
@@ -30,6 +39,13 @@ bool game::checkVertexCollisionWithBitmap(float px, float py, float bitmapX, flo
     return false;
 }
 
+/**
+ * @brief Sprawdza, czy którykolwiek z wierzcho³ków trójk¹ta koliduje z bitmap¹.
+ * @param triangle Obiekt trójk¹ta, który ma byæ sprawdzony pod k¹tem kolizji.
+ * @param bitmap Obiekt gracza (bitmapy), który mo¿e kolidowaæ z trójk¹tem.
+ * @param bitmapImage Obiekt sf::Image reprezentuj¹cy bitmapê.
+ * @return Zwraca true, jeœli którykolwiek z wierzcho³ków trójk¹ta znajduje siê w obrêbie bitmapy.
+ */
 bool game::checkTriangleCollisionWithBitmap(const Triangle& triangle, Player& bitmap, const sf::Image& bitmapImage)
 {
     // Pobieramy pozycje wierzcho³ków trójk¹ta
@@ -61,6 +77,13 @@ bool game::checkTriangleCollisionWithBitmap(const Triangle& triangle, Player& bi
     return false;
 }
 
+/**
+ * @brief Sprawdza kolizjê miêdzy ko³em a bitmap¹ na poziomie pikseli.
+ * @param circle Obiekt ko³a, którego punkty bêd¹ sprawdzane.
+ * @param bitmap Obiekt bitmapy (gracza), z któr¹ ko³o mo¿e kolidowaæ.
+ * @param bitmapImage Obiekt sf::Image reprezentuj¹cy bitmapê.
+ * @return Zwraca true, jeœli którykolwiek piksel ko³a koliduje z bitmap¹.
+ */
 bool game::checkPixelCollision(const Circle& circle, Player& bitmap, const sf::Image& bitmapImage)
 {
     // Pobierz punkty ko³a
@@ -85,6 +108,7 @@ bool game::checkPixelCollision(const Circle& circle, Player& bitmap, const sf::I
             int localX = static_cast<int>(x - bitmapX);
             int localY = static_cast<int>(y - bitmapY);
 
+            // Mo¿na dodaæ kod do sprawdzenia kolizji pikseli tutaj (np. sprawdzenie koloru piksela w bitmapie)
         }
     }
 
@@ -92,6 +116,13 @@ bool game::checkPixelCollision(const Circle& circle, Player& bitmap, const sf::I
     return false;
 }
 
+/**
+ * @brief Sprawdza, czy którykolwiek z wierzcho³ków prostok¹ta koliduje z bitmap¹.
+ * @param rectangle Obiekt prostok¹ta, który ma byæ sprawdzony pod k¹tem kolizji.
+ * @param bitmap Obiekt gracza (bitmapy), który mo¿e kolidowaæ z prostok¹tem.
+ * @param bitmapImage Obiekt sf::Image reprezentuj¹cy bitmapê.
+ * @return Zwraca true, jeœli którykolwiek z wierzcho³ków prostok¹ta znajduje siê w obrêbie bitmapy.
+ */
 bool game::checkRectangleCollisionWithBitmap(const Rectangle& rectangle, Player& bitmap, const sf::Image& bitmapImage)
 {
     // Pobierz wspó³rzêdne wierzcho³ków prostok¹ta

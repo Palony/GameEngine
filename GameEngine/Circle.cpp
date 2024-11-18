@@ -1,6 +1,11 @@
 #include "Circle.h"
 #include <cmath>
 
+/**
+ * @brief Klasa reprezentuj¹ca okr¹g.
+ * Klasa ta pozwala na tworzenie okrêgów, ich rysowanie na ekranie, a tak¿e obs³ugê ich ruchu
+ * oraz resetowanie pozycji, gdy okr¹g opuœci ekran.
+ */
 Circle::Circle(float x, float y, float R, sf::Color color)
     : R(R), fillColor(color)
 {
@@ -11,6 +16,11 @@ Circle::Circle(float x, float y, float R, sf::Color color)
     this->initialY = y;
 }
 
+/**
+ * @brief Rysowanie okrêgu na oknie renderowania.
+ * Okr¹g jest rysowany piksel po pikselu, wype³niaj¹c jego wnêtrze i rysuj¹c kontur.
+ * @param window Okno renderowania, na którym okr¹g ma zostaæ narysowany.
+ */
 void Circle::draw(sf::RenderWindow& window)
 {
     points.clear(); // Czyœæ punkty przed narysowaniem ko³a
@@ -42,6 +52,14 @@ void Circle::draw(sf::RenderWindow& window)
     drawQuarter(-1, -1, window);
 }
 
+/**
+ * @brief Rysowanie jednej æwiartki okrêgu.
+ * Metoda ta rysuje kontur okrêgu w jednej æwiartce, u¿ywaj¹c funkcji trygonometrycznych
+ * dla obliczenia pozycji punktów na obwodzie.
+ * @param x_sign Wartoœæ zmieniaj¹ca kierunek rysowania w osi X (1 lub -1).
+ * @param y_sign Wartoœæ zmieniaj¹ca kierunek rysowania w osi Y (1 lub -1).
+ * @param window Okno renderowania, na którym kontur ma zostaæ narysowany.
+ */
 void Circle::drawQuarter(int x_sign, int y_sign, sf::RenderWindow& window)
 {
     const float M_PI = 3.14159265359f; // PI
@@ -66,11 +84,21 @@ void Circle::drawQuarter(int x_sign, int y_sign, sf::RenderWindow& window)
     }
 }
 
+/**
+ * @brief Zwraca promieñ okrêgu.
+ * @return Promieñ okrêgu.
+ */
 float Circle::getR()
 {
     return R;
 }
 
+/**
+ * @brief Metoda opadaj¹ca okrêgu na ekranie.
+ * Okr¹g przemieszcza siê w dó³ ekranu, a jeœli opuœci ekran, jego pozycja zostaje zresetowana.
+ * @param window Okno renderowania, w którym okr¹g jest wyœwietlany.
+ * @param ty Prêdkoœæ opadania w osi Y.
+ */
 void Circle::fall(sf::RenderWindow& window, float ty)
 {
     // Aktualizacja pozycji Y
@@ -85,17 +113,29 @@ void Circle::fall(sf::RenderWindow& window, float ty)
     }
 }
 
+/**
+ * @brief Resetuje pozycjê okrêgu do pocz¹tkowego miejsca.
+ * Ustawia okr¹g na pocz¹tkow¹ pozycjê w górnej czêœci ekranu.
+ */
 void Circle::resetPosition()
 {
     points.clear(); // Czyœci wektor punktów
     setXY(initialX, -R);
 }
 
+/**
+ * @brief Dodaje punkt do wektora punktów okrêgu.
+ * @param pos Pozycja punktu do dodania.
+ */
 void Circle::addPoints(sf::Vector2f pos)
 {
     this->points.push_back(pos);
 }
 
+/**
+ * @brief Zwraca wektor punktów, które tworz¹ okr¹g.
+ * @return Wektor punktów okrêgu.
+ */
 std::vector<sf::Vector2f> Circle::getPoints() const
 {
     return points;

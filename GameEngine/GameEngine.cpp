@@ -2,7 +2,7 @@
 
 
 
-/*
+
 int main() {
     Engine engine;
     PrimitiveRenderer primitiverenderer;
@@ -11,95 +11,102 @@ int main() {
     BitmapHandler bitmap;
 
     Player player;
-;
-
-  //Tworzenie prymitywów
-    Triangle triangle(550, 100, 550, 50, 500, 50);
-    Elipse elipse(300.0f, 300.0f, 15.0f, 30.0f);
-    Circle circle(400.0f, 450.0f, 15.0f);
-    Rectangle rectangle(600.0f, 700.0f, 100.0f, 50.0f);
-
-
     
-   
+
+
+
 
     engine.initializeVariables();
     engine.initWindow();
     engine.time();
-    if(!bitmap.loadFromFile("steve.png")) {
+    if (!bitmap.loadFromFile("steve.png")) {
         std::cerr << "Nie mozna wczytac pliku bitmapy!" << std::endl;
         return -1;
     }
 
-    
+
     while (engine.running())
     {
-        player.handleInput(*engine.window); // Obsługa wejścia dla gracza
-        player.update(); // Aktualizacja logiki gracza
-     
+
         engine.update();
 
         // Czyszczenie
-        engine.window->clear();
+        engine.clear();
 
         //Rysowanie  linii
+        
+        /*
         line.set_top(250, 150);
         line.set_bottom(250, 450);
+        
+
+        //Skalowanie lini
         line.draw_line(*engine.window);
+        line.scaling00(*engine.window, 2);
+        Point2D scalePoint; // Punkt XY na podstawie którego skalujemy linię
+        scalePoint.setXY(400.0f, 350.0f);
+        scalePoint.draw_point(*engine.window);
+        line.scalingXY(*engine.window, 2, 400.0f, 350.0f);
+        */
 
-        // Rysowanie prymitywów
-        //primitiverenderer.drawTriangle(*engine.window,550, 100, 550,50,500,50);
-        //primitiverenderer.drawRectangle(*engine.window, 600,700,100,50); //(wsp. szerokosci1, wsp. szerokosci2, wsp. wysokosci 1, wsp wysokosci2)
-        //primitiverenderer.drawPolygon(*engine.window, 5);
 
-        // Rysowanie prymitywów
-        circle.draw(*engine.window);
-        elipse.draw(*engine.window);
-        triangle.draw(*engine.window);
-        rectangle.draw(*engine.window);
+        // Rysowanie prymitywów za pomocą klasy primitiverenderer
+        /*
+        primitiverenderer.drawTriangle(*engine.window,550, 100, 550,50,500,50);
+        primitiverenderer.drawRectangle(*engine.window, 600,700,100,50); //(wsp. szerokosci1, wsp. szerokosci2, wsp. wysokosci 1, wsp wysokosci2)
+        primitiverenderer.drawCircle(*engine.window, 400.0f, 450.0f, 60.f);
+        primitiverenderer.drawElipse(*engine.window, 400.0f, 300.0f, 120.f,60.f);
+        */
 
-        primitiverenderer.drawPolygon(*engine.window, 5);
-            
-       
-        // Rysowanie punktu
-        point.setXY(425.f, 325.f);
+
+        //Rotacja punktu
+
+        /*
+        point.setXY(500.f, 400.f);
+        point.rotation00(*engine.window, 180.0f);
+        point.rotationXY(*engine.window, 180, 500, 300);
         point.draw_point(*engine.window);
-
-        // przesuniecia
-        point.translation(*engine.window, 0, -100);
-        line.translation(*engine.window, 300, 0);
-
-        //rotacja
-        point.rotation00(*engine.window, 90);
-        point.rotationXY(*engine.window, 90, 300, 300);
-        line.rotation00(*engine.window, 120);
-        line.rotationXY(*engine.window, 60, 450, 300);
-
-        //skalowanie
-          point.scaling00(*engine.window, 0.5);
-          point.scalingXY(*engine.window, 0.5,200,300);
-          line.scaling00(*engine.window, 0.5);
-          line.scalingXY(*engine.window, 0.5, 100, 300);
-
-          //bitmapy
-          
-          bitmap.draw(*engine.window);
-
-          //player
-          player.draw(*engine.window);
+        */
 
 
-        //Rysowanie okręgu za pomocą funkcji wykorzysującej 4 krotną symetrię 
-        //primitiverenderer.drawCircle(*engine.window, 400.0f, 300.0f, 50.f);
-        //Rysowanie elipsy za pomocą funkcji wykorzysującej 4 krotną symetrię 
-        //primitiverenderer.drawElipse(*engine.window, 400.0f, 300.0f, 100.f, 150.f);
+        // przesuniecia punktu
+        /*
+        point.setXY(200, 300);
+        Point2D testPoint; // punkt o który 
+        testPoint.setXY(200, 300);
+        testPoint.draw_point(*engine.window);
+        point.translation(*engine.window, 0, -100); //przesuwa do góry o 100 pikseli
+        */
 
-        // Rysowanie
-        engine.window->display();
+        //skalowanie względem XY
+        /*
+        point.setXY(100, 300);
+        point.draw_point(*engine.window);
+        point.scalingXY(*engine.window, 0.5,200,300);
+        */
+
+        
+        //Skalowanie punktu względem 00
+
+        /*
+        point.setXY(100, 300);
+        point.draw_point(*engine.window);
+        point.scaling00(*engine.window, 0.5);
+        */
+
+
+        /*Wstawianie bitmapy
+        bitmap.setPosition(400, 300);
+        bitmap.draw(*engine.window);
+        //bitmap.clear(); //usuwa bitmape
+        */
+
+
+        engine.render();
     }
 
     return 0;
 }
-*/
+
 
 

@@ -1,7 +1,14 @@
 #include "PrimitiveRenderer.h"
 using namespace std;
 
-
+/**
+ * @brief Rysuje linię przy użyciu algorytmu przyrostowego.
+ * @param window Okno renderowania SFML.
+ * @param x0 Początkowa współrzędna X.
+ * @param y0 Początkowa współrzędna Y.
+ * @param x1 Końcowa współrzędna X.
+ * @param y1 Końcowa współrzędna Y.
+ */
 void PrimitiveRenderer::drawIncrementalLine(sf::RenderWindow& window, float x0, float y0, float x1, float y1)
 {
     
@@ -56,7 +63,14 @@ void PrimitiveRenderer::drawIncrementalLine(sf::RenderWindow& window, float x0, 
         y += m;  
     }
 }
-
+/**
+ * @brief Rysuje prostokąt w oknie SFML.
+ * @param window Okno renderowania SFML.
+ * @param w0 Współrzędna X lewego górnego rogu.
+ * @param w1 Współrzędna X prawego dolnego rogu.
+ * @param h0 Współrzędna Y lewego górnego rogu.
+ * @param h1 Współrzędna Y prawego dolnego rogu.
+ */
 void PrimitiveRenderer::drawRectangle(sf::RenderWindow& window, float w0, float w1, float h0, float h1)
 {
     fillRectangle(window, w0, w1, h0, h1);
@@ -67,7 +81,14 @@ void PrimitiveRenderer::drawRectangle(sf::RenderWindow& window, float w0, float 
     drawIncrementalLine(window, w1, h1, w0, h1);
     drawIncrementalLine(window, w0, h1, w0, h0);
 }
-
+/**
+ * @brief Wypełnia prostokąt w oknie SFML.
+ * @param window Okno renderowania SFML.
+ * @param w0 Współrzędna X lewego górnego rogu.
+ * @param w1 Współrzędna X prawego dolnego rogu.
+ * @param h0 Współrzędna Y lewego górnego rogu.
+ * @param h1 Współrzędna Y prawego dolnego rogu.
+ */
 void PrimitiveRenderer::fillRectangle(sf::RenderWindow& window, float w0, float w1, float h0, float h1)
 {
     // Upewniamy się, że współrzędne są uporządkowane
@@ -83,7 +104,16 @@ void PrimitiveRenderer::fillRectangle(sf::RenderWindow& window, float w0, float 
         }
     }
 }
-
+/**
+ * @brief Rysuje trójkąt w oknie SFML.
+ * @param window Okno renderowania SFML.
+ * @param x0 Współrzędna X pierwszego wierzchołka.
+ * @param y0 Współrzędna Y pierwszego wierzchołka.
+ * @param x1 Współrzędna X drugiego wierzchołka.
+ * @param y1 Współrzędna Y drugiego wierzchołka.
+ * @param x2 Współrzędna X trzeciego wierzchołka.
+ * @param y2 Współrzędna Y trzeciego wierzchołka.
+ */
 void PrimitiveRenderer::drawTriangle(sf::RenderWindow& window, float x0, float y0, float x1, float y1, float x2, float y2)
 {
     fillTriangle(window, x0, y0, x1, y1, x2, y2);
@@ -93,7 +123,16 @@ void PrimitiveRenderer::drawTriangle(sf::RenderWindow& window, float x0, float y
     drawIncrementalLine(window, x1, y1, x2, y2);
     drawIncrementalLine(window, x2, y2, x0, y0);
 }
-
+/**
+ * @brief Wypełnia trójkąt w oknie SFML.
+ * @param window Okno renderowania SFML.
+ * @param x0 Współrzędna X pierwszego wierzchołka.
+ * @param y0 Współrzędna Y pierwszego wierzchołka.
+ * @param x1 Współrzędna X drugiego wierzchołka.
+ * @param y1 Współrzędna Y drugiego wierzchołka.
+ * @param x2 Współrzędna X trzeciego wierzchołka.
+ * @param y2 Współrzędna Y trzeciego wierzchołka.
+ */
 void PrimitiveRenderer::fillTriangle(sf::RenderWindow& window, float x0, float y0, float x1, float y1, float x2, float y2)
 {
     // Znajdź prostokąt otaczający trójkąt
@@ -125,7 +164,13 @@ void PrimitiveRenderer::fillTriangle(sf::RenderWindow& window, float x0, float y
         }
     }
 }
-
+/**
+ * @brief Rysuje okrąg w oknie SFML.
+ * @param window Okno renderowania SFML.
+ * @param x0 Współrzędna X środka okręgu.
+ * @param y0 Współrzędna Y środka okręgu.
+ * @param R Promień okręgu.
+ */
 void PrimitiveRenderer::drawCircle(sf::RenderWindow& window, float x0, float y0, float R)
 {
     fillCircle(window, x0, y0, R);
@@ -136,7 +181,13 @@ void PrimitiveRenderer::drawCircle(sf::RenderWindow& window, float x0, float y0,
     drawQuarter(window, x0, y0, R, -1, 1);
     drawQuarter(window, x0, y0, R, -1, -1);
 }
-
+/**
+ * @brief Wypełnia okrąg w oknie SFML.
+ * @param window Okno renderowania SFML.
+ * @param x0 Współrzędna X środka okręgu.
+ * @param y0 Współrzędna Y środka okręgu.
+ * @param R Promień okręgu.
+ */
 void PrimitiveRenderer::fillCircle(sf::RenderWindow& window, float x0, float y0, float R)
 {
     int minX = static_cast<int>(std::floor(x0 - R));
@@ -158,7 +209,14 @@ void PrimitiveRenderer::fillCircle(sf::RenderWindow& window, float x0, float y0,
         }
     }
 }
-
+/**
+ * @brief Rysuje elipsę w oknie SFML.
+ * @param window Okno renderowania SFML.
+ * @param x0 Współrzędna X środka elipsy.
+ * @param y0 Współrzędna Y środka elipsy.
+ * @param R1 Promień poziomy elipsy.
+ * @param R2 Promień pionowy elipsy.
+ */
 void PrimitiveRenderer::drawElipse(sf::RenderWindow& window, float x0, float y0, float R1, float R2)
 {
     fillElipse(window, x0, y0, R1, R2);
@@ -169,7 +227,14 @@ void PrimitiveRenderer::drawElipse(sf::RenderWindow& window, float x0, float y0,
     drawQuarterElipse(window, x0, y0, R1, R2, -1, 1);
     drawQuarterElipse(window, x0, y0, R1, R2, -1, -1);
 }
-
+/**
+ * @brief Wypełnia elipsę w oknie SFML.
+ * @param window Okno renderowania SFML.
+ * @param x0 Współrzędna X środka elipsy.
+ * @param y0 Współrzędna Y środka elipsy.
+ * @param R1 Promień poziomy elipsy.
+ * @param R2 Promień pionowy elipsy.
+ */
 void PrimitiveRenderer::fillElipse(sf::RenderWindow& window, float x0, float y0, float R1, float R2)
 {
     int minX = static_cast<int>(std::floor(x0 - R1));
@@ -191,7 +256,15 @@ void PrimitiveRenderer::fillElipse(sf::RenderWindow& window, float x0, float y0,
         }
     }
 }
-
+/**
+ * @brief Rysuje ćwiartkę okręgu w oknie SFML.
+ * @param window Okno renderowania SFML.
+ * @param x0 Współrzędna X środka okręgu.
+ * @param y0 Współrzędna Y środka okręgu.
+ * @param R Promień okręgu.
+ * @param x_sign Znak określający, w którą stronę rysować w osi X.
+ * @param y_sign Znak określający, w którą stronę rysować w osi Y.
+ */
 void PrimitiveRenderer::drawQuarter(sf::RenderWindow& window, float x0, float y0, float R, int x_sign, int y_sign)
 {
     const float M_PI = 3.14159265359f; // PI
@@ -209,7 +282,16 @@ void PrimitiveRenderer::drawQuarter(sf::RenderWindow& window, float x0, float y0
         alfa += inc;
     }
 }
-
+/**
+ * @brief Rysuje ćwiartkę elipsy w oknie SFML.
+ * @param window Okno renderowania SFML.
+ * @param x0 Współrzędna X środka elipsy.
+ * @param y0 Współrzędna Y środka elipsy.
+ * @param R1 Promień poziomy elipsy.
+ * @param R2 Promień pionowy elipsy.
+ * @param x_sign Znak określający, w którą stronę rysować w osi X.
+ * @param y_sign Znak określający, w którą stronę rysować w osi Y.
+ */
 void PrimitiveRenderer::drawQuarterElipse(sf::RenderWindow& window, float x0, float y0, float R1, float R2, int x_sign, int y_sign)
 {
     const float M_PI = 3.14159265359f; // PI
@@ -227,99 +309,6 @@ void PrimitiveRenderer::drawQuarterElipse(sf::RenderWindow& window, float x0, fl
         alfa += inc;
     }
 }
-/*
-
-void PrimitiveRenderer::borderFill(sf::RenderWindow& window, int x, int y, sf::Color fillColor, sf::Color boundaryColor)
-{
-    // Tworzymy teksturę i obraz do przechwycenia zawartości okna
-    sf::Texture texture;
-    texture.create(window.getSize().x, window.getSize().y);
-    texture.update(window);
-    sf::Image image = texture.copyToImage();
-
-    std::stack<sf::Vector2i> pixelStack;
-    pixelStack.push(sf::Vector2i(x, y));
-
-    while (!pixelStack.empty())
-    {
-        sf::Vector2i p = pixelStack.top();
-        pixelStack.pop();
-
-        if (p.x < 0 || p.y < 0 || p.x >= static_cast<int>(image.getSize().x) || p.y >= static_cast<int>(image.getSize().y))
-            continue;
-
-        sf::Color currentColor = image.getPixel(p.x, p.y);
-        if (currentColor != boundaryColor && currentColor != fillColor)
-        {
-            image.setPixel(p.x, p.y, fillColor);
-
-            pixelStack.push(sf::Vector2i(p.x + 1, p.y));
-            pixelStack.push(sf::Vector2i(p.x - 1, p.y));
-            pixelStack.push(sf::Vector2i(p.x, p.y + 1));
-            pixelStack.push(sf::Vector2i(p.x, p.y - 1));
-        }
-    }
-
-    // Rysujemy zaktualizowany obraz na oknie
-    sf::Texture updatedTexture;
-    updatedTexture.loadFromImage(image);
-    sf::Sprite sprite(updatedTexture);
-    window.draw(sprite);
-}
-
-void PrimitiveRenderer::floodFill(sf::RenderWindow& window, int x, int y, sf::Color fillColor, sf::Color backgroundColor)
-{
-    // Tworzymy teksturę i obraz do przechwycenia zawartości okna
-    sf::Texture texture;
-    texture.create(window.getSize().x, window.getSize().y);
-    texture.update(window);
-    sf::Image image = texture.copyToImage();
-
-    std::stack<sf::Vector2i> pixelStack;
-    pixelStack.push(sf::Vector2i(x, y));
-
-    while (!pixelStack.empty())
-    {
-        sf::Vector2i p = pixelStack.top();
-        pixelStack.pop();
-
-        if (p.x < 0 || p.y < 0 || p.x >= static_cast<int>(image.getSize().x) || p.y >= static_cast<int>(image.getSize().y))
-            continue;
-
-        sf::Color currentColor = image.getPixel(p.x, p.y);
-        if (currentColor == backgroundColor && currentColor != fillColor)
-        {
-            image.setPixel(p.x, p.y, fillColor);
-
-            pixelStack.push(sf::Vector2i(p.x + 1, p.y));
-            pixelStack.push(sf::Vector2i(p.x - 1, p.y));
-            pixelStack.push(sf::Vector2i(p.x, p.y + 1));
-            pixelStack.push(sf::Vector2i(p.x, p.y - 1));
-        }
-    }
-
-    // Rysujemy zaktualizowany obraz na oknie
-    sf::Texture updatedTexture;
-    updatedTexture.loadFromImage(image);
-    sf::Sprite sprite(updatedTexture);
-    window.draw(sprite);
-}
-
-void PrimitiveRenderer::testFillRectangle(sf::RenderWindow& window, float w0, float w1, float h0, float h1, sf::Color fillColor, sf::Color boundaryColor)
-{
-    // Rysujemy kontur prostokąta
-    sf::Color originalColor = sf::Color::Black; // Zakładamy czarny kolor granicy
-    drawRectangle(window, w0, w1, h0, h1);
-
-    // Aktualizujemy okno, aby upewnić się, że prostokąt jest narysowany
-    window.display();
-
-    // Wykonujemy wypełnienie graniczne
-    int seedX = static_cast<int>((w0 + w1) / 2);
-    int seedY = static_cast<int>((h0 + h1) / 2);
-    borderFill(window, seedX, seedY, fillColor, boundaryColor);
-}
-*/
 
 
 
